@@ -18,10 +18,17 @@ export async function GET(
   return NextResponse.json({
     id: data.id,
     name: data.name,
+    height: data.height,
+    weight: data.weight,
+    abilities: data.abilities,
+    moves: data.moves.map((m: { move: { name: string } }) => m.move.name),
+    stats: data.stats,
     sprites: {
       front: data.sprites.front_default,
       back: data.sprites.back_default,
-      shiny: data.sprites.front_shiny,
+      frontShiny: data.sprites.front_shiny,
+      backShiny: data.sprites.back_shiny
     },
+    types: data.types
   });
 }
