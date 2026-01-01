@@ -1,26 +1,45 @@
-import { SignJWT, jwtVerify } from "jose";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+const COOKIE_NAME = "auth";
 
-if (!process.env.JWT_SECRET) {
-  throw new Error("JWT_SECRET is missing in .env.local");
+type AuthPayload = { userId: string; email: string, username: string };
+
+export function signAuthToken(payload: AuthPayload) {
+  return jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: "7d" });
 }
 
-export type SessionPayload = {
-  sub: string; 
-  email: string;
-  username: string;
-};
+export async function setAuthCookie(token: string) {
 
-export async function signSession(payload: SessionPayload) {
-  return await new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("7d")
-    .sign(secret);
+  const cookieStore = await cookies();
+  cookieStore.set(COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7, 
+  });
 }
 
-export async function verifySession(token: string) {
-  const { payload } = await jwtVerify(token, secret);
-  return payload as unknown as SessionPayload & { exp: number; iat: number };
+export async function clearAuthCookie() {
+  const cookieStore = await cookies();
+  cookieStore.set(COOKIE_NAME, "", { path: "/", maxAge: 0 });
+}
+
+export async function getAuth(): Promise<AuthPayload | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(COOKIE_NAME)?.value;
+  if (!token) return null;
+
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET!) as AuthPayload;
+  } catch {
+    return null;
+  }
+}
+
+export function requireAuth() {
+  const auth = getAuth();
+  if (!auth) throw new Error("UNAUTHORIZED");
+  return auth;
 }

@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { query } from "@/lib/db";
-
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+import { signAuthToken, setAuthCookie } from "@/lib/auth";
 
 type RegisterBody = {
   email?: string;
@@ -47,7 +45,17 @@ export async function POST(req: Request) {
       [email, username, passwordHash]
     );
 
-    return NextResponse.json({ user: rows[0] }, { status: 201 });
+    const user = rows[0];
+
+    const token = signAuthToken({
+      userId: user.id,
+      email: user.email,
+      username: user.username,
+    });
+
+    await setAuthCookie(token);
+
+    return NextResponse.json({ user }, { status: 201 });
   } catch (err) {
     console.error("REGISTER error:", err);
     return NextResponse.json({ error: "internal server error" }, { status: 500 });

@@ -1,4 +1,7 @@
 import type { PokemonResponse } from "@/types/schema";
+import SpriteCard from "@/components/SpriteCard/SpriteCard";
+import AbilityCard from "@/components/AbilityCard/AbilityCard";
+import MoveCard from "@/components/MoveCard/MoveCard";
 
 async function getPokemon(id: string): Promise<PokemonResponse> {
   const baseUrl =
@@ -90,16 +93,16 @@ export default async function PokemonDetailPage({
         <h2 style={{ fontSize: 18, marginBottom: 10 }}>Sprites</h2>
 
         <div style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
-          <Sprite label="Front" src={p.sprites.front} />
-          <Sprite label="Back" src={p.sprites.back} />
-          <Sprite label="Front (Shiny)" src={p.sprites.frontShiny} />
-          <Sprite label="Back (Shiny)" src={p.sprites.backShiny} />
+          <SpriteCard label="Front" src={p.sprites.front} />
+          <SpriteCard label="Back" src={p.sprites.back} />
+          <SpriteCard label="Front (Shiny)" src={p.sprites.frontShiny} />
+          <SpriteCard label="Back (Shiny)" src={p.sprites.backShiny} />
         </div>
       </section>
 
       <section style={{ marginTop: 24 }}>
         <h2 style={{ fontSize: 18, marginBottom: 10 }}>Abilities</h2>
-        <TagRow items={abilityNames} />
+        <AbilityCard items={abilityNames} />
       </section>
 
       <section style={{ marginTop: 24 }}>
@@ -149,69 +152,9 @@ export default async function PokemonDetailPage({
           Showing {Math.min(20, moveNames.length)} of {moveNames.length}
         </p>
 
-        <TagRow items={moveNames.slice(0, 20)} />
+        <MoveCard items={moveNames.slice(0, 20)} />
       </section>
     </main>
   );
 }
 
-function Sprite({ label, src }: { label: string; src: string | null }) {
-  return (
-    <div
-      style={{
-        width: 160,
-        border: "1px solid #e5e5e5",
-        borderRadius: 12,
-        padding: 12,
-        textAlign: "center",
-      }}
-    >
-      <div style={{ fontSize: 13, opacity: 0.75, marginBottom: 8 }}>{label}</div>
-      {src ? (
-        <img src={src} alt={label} width={120} height={120} />
-      ) : (
-        <div
-          style={{
-            width: 120,
-            height: 120,
-            margin: "0 auto",
-            display: "grid",
-            placeItems: "center",
-            border: "1px dashed #ccc",
-            borderRadius: 12,
-            fontSize: 12,
-            opacity: 0.7,
-          }}
-        >
-          No sprite
-        </div>
-      )}
-    </div>
-  );
-}
-
-function TagRow({ items }: { items: readonly string[] }) {
-  if (items.length === 0) {
-    return <p style={{ opacity: 0.6 }}>None</p>;
-  }
-
-  return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-      {items.map((name) => (
-        <span
-          key={name}
-          style={{
-            border: "1px solid #ddd",
-            borderRadius: 999,
-            padding: "6px 10px",
-            fontSize: 13,
-            background: "#fafafa",
-            textTransform: "capitalize",
-          }}
-        >
-          {name}
-        </span>
-      ))}
-    </div>
-  );
-}

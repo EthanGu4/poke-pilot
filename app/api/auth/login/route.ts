@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { query } from "@/lib/db";
+import { signAuthToken, setAuthCookie } from "@/lib/auth";
 
 type LoginBody = {
   emailOrUsername?: string;
@@ -44,6 +45,14 @@ export async function POST(req: Request) {
     if (!ok) {
       return NextResponse.json({ error: "invalid credentials" }, { status: 401 });
     }
+
+    const token = signAuthToken({
+      userId: user.id,
+      email: user.email,
+      username: user.username,
+    });
+    
+    await setAuthCookie(token);
 
     return NextResponse.json(
       { user: { id: user.id, email: user.email, username: user.username } },

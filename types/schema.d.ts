@@ -33,3 +33,9 @@ export type PokemonSprites = {
   front_shiny: string | null;
   back_shiny: string | null;
 };
+
+export type PokemonCatalogItem = {
+    id: number,
+    name: string,
+    sprite: string;
+}
