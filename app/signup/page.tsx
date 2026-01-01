@@ -43,8 +43,7 @@ export default function SignupPage() {
       if (res.ok && data.user) {
         setMessage(`Signed up as ${data.user.username}`);
 
-        // if your register route sets the auth cookie, this will take you “into the app”
-        router.push("/catalog");
+        router.push("/dashboard");
         router.refresh();
       } else {
         setMessage(data.error || "Error signing up");

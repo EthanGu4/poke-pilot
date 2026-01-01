@@ -72,7 +72,7 @@ export default async function PokemonDetailPage({
   const moveNames = p.moves;
 
   return (
-    <main style={{ padding: 48, fontFamily: "system-ui", backgroundColor: "#fca5a5"}}>
+    <main style={{ padding: 48, fontFamily: "system-ui"}}>
       <header style={{ display: "flex", justifyContent: "space-between", gap: 16 }}>
         <div>
           <h1 style={{ margin: 0 }}>{name}</h1>

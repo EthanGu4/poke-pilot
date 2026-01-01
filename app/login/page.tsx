@@ -40,7 +40,7 @@ export default function LoginPage() {
       if (res.ok && data.user) {
         setMessage(`Logged in as ${data.user.username}`);
 
-        router.push("/catalog");
+        router.push("/dashboard");
         router.refresh();
       } else {
         setMessage(data.error || "Error logging in");
