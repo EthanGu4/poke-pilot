@@ -63,9 +63,6 @@ export default function DashboardPage() {
         <h1 className="text-4xl font-bold tracking-tight">
           {me ? `Welcome, ${me.username}` : "Welcome"}
         </h1>
-        <p className="mt-3 text-zinc-300">
-          Pick where you want to go.
-        </p>
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button

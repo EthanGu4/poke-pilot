@@ -4,18 +4,16 @@ export default function AbilityCard({ items }: { items: string[] }) {
   }
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+    <div className="flex flex-wrap gap-2">
       {items.map((name) => (
         <span
           key={name}
-          style={{
-            border: "1px solid #ddd",
-            borderRadius: 999,
-            padding: "6px 10px",
-            fontSize: 13,
-            background: "#fafafa",
-            textTransform: "capitalize",
-          }}
+          className="rounded-lg border-2 border-[#2B2B2B]
+                     bg-[#FFFDF4]
+                     px-3 py-1.5
+                     text-xs font-semibold
+                     capitalize text-[#374151]
+                     shadow-[2px_2px_0_#2B2B2B]"
         >
           {name}
         </span>

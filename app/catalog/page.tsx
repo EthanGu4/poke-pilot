@@ -56,7 +56,7 @@ export default function CatalogPage() {
 
   return (
     <main className="min-h-screen px-4 py-7 text-slate-950">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(900px_600px_at_20%_10%,rgba(59,130,246,0.18),transparent_60%),radial-gradient(900px_650px_at_80%_20%,rgba(34,197,94,0.14),transparent_55%),linear-gradient(to_bottom,#f7fbff,#fbfff6)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[#F7F5E8]" />
 
       <div className="mx-auto max-w-6xl">
         <div className="overflow-hidden rounded-[26px] border-[3px] border-black/25 bg-gradient-to-b from-red-500 to-red-700 shadow-[0_26px_70px_rgba(0,0,0,0.25)]">
@@ -87,7 +87,7 @@ export default function CatalogPage() {
 
           <div className="bg-black/10 px-4 pb-4 sm:px-6 sm:pb-6">
             <div className="sticky top-4 z-10 rounded-[18px] border-[3px] border-black/25 bg-slate-100/70 p-3 shadow-[0_16px_34px_rgba(0,0,0,0.18)] backdrop-blur">
-              <div className="relative overflow-hidden rounded-[14px] border-[2px] border-black/25 bg-[linear-gradient(to_bottom,#e6f0e6,#d7e5dc_55%,#c6d9cf)] px-3 py-3">
+              <div className="relative overflow-hidden rounded-[14px] border-[2px] border-black/25 bg-[#F7F5E8] px-3 py-3">
                 <div className="pointer-events-none absolute inset-0 opacity-[0.24] mix-blend-multiply [background:linear-gradient(to_bottom,rgba(0,0,0,0.10),rgba(0,0,0,0.10)_1px,transparent_1px,transparent_6px)]" />
 
                 <div className="relative flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

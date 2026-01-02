@@ -3,32 +3,29 @@
 export default function SpriteCard({ label, src }: { label: string; src: string | null }) {
   return (
     <div
-      style={{
-        width: 160,
-        border: "1px solid #e5e5e5",
-        borderRadius: 12,
-        padding: 12,
-        textAlign: "center",
-      }}
+      className="w-40 rounded-2xl border-2 border-[#2B2B2B] bg-[#FFFDF4]
+                 p-3 text-center
+                 shadow-[3px_3px_0_#2B2B2B]"
     >
-      <div style={{ fontSize: 13, opacity: 0.75, marginBottom: 8 }}>{label}</div>
+      <div className="mb-2 text-xs font-bold tracking-wide text-[#374151]">
+        {label.toUpperCase()}
+      </div>
+
       {src ? (
-        <img src={src} alt={label} width={120} height={120} />
+        <img
+          src={src}
+          alt={label}
+          width={120}
+          height={120}
+          className="mx-auto image-pixelated"
+        />
       ) : (
         <div
-          style={{
-            width: 120,
-            height: 120,
-            margin: "0 auto",
-            display: "grid",
-            placeItems: "center",
-            border: "1px dashed #ccc",
-            borderRadius: 12,
-            fontSize: 12,
-            opacity: 0.7,
-          }}
+          className="mx-auto flex h-[120px] w-[120px] items-center justify-center
+                     rounded-xl border-2 border-dashed border-[#2B2B2B]
+                     bg-[#F3F4F6] text-xs font-semibold text-[#6B7280]"
         >
-          No sprite
+          Not Found
         </div>
       )}
     </div>

@@ -8,7 +8,7 @@ export default function PokemonCatalogCard({ p }: { p: PokemonCatalogItem }) {
 
   return (
     <Link href={`/catalog/${p.id}`} className="group block no-underline">
-      <div className="relative overflow-hidden rounded-2xl border-[2px] border-black/25 bg-[linear-gradient(to_bottom,#e6f0e6,#d7e5dc_55%,#c6d9cf)] p-3 shadow-[0_14px_28px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
+      <div className="relative overflow-hidden rounded-2xl border-[2px] border-black/25 bg-[#F7F5E8] p-3 shadow-[0_14px_28px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
         <div className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-multiply [background:linear-gradient(to_bottom,rgba(0,0,0,0.10),rgba(0,0,0,0.10)_1px,transparent_1px,transparent_6px)]" />
 
         <div className="relative flex items-center justify-between gap-3">
