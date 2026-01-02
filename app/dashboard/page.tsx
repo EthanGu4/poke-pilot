@@ -5,9 +5,34 @@ import { useRouter } from "next/navigation";
 
 type MeResponse = { user: { userId: string; email: string; username: string } | null };
 
+const backgrounds = [
+  "/backgrounds/pixel-bg.avif",
+  "/backgrounds/pixel-bg1.webp", 
+  "/backgrounds/pixel-bg2.gif",
+  "/backgrounds/pixel-bg3.gif",
+  "/backgrounds/pixel-bg4.gif",
+  "/backgrounds/pixel-bg5.jpg",
+  "/backgrounds/pixel-bg6.jpg",
+  "/backgrounds/pixel-bg7.jpg",
+  "/backgrounds/pixel-bg8.jpg",
+  "/backgrounds/pixel-bg9.jpg",
+  "/backgrounds/pixel-bg10.jpg",
+  "/backgrounds/pixel-bg11.jpg",
+  "/backgrounds/pixel-bg12.png",
+  "/backgrounds/pixel-bg13.avif",
+  "/backgrounds/pixel-bg14.webp",
+  "/backgrounds/pixel-bg15.jpg",
+  "/backgrounds/pixel-bg16.jpg",
+  "/backgrounds/pixel-bg17.jpg",
+  "/backgrounds/pixel-bg18.jpg",
+]
+
 export default function DashboardPage() {
   const router = useRouter();
   const [me, setMe] = useState<MeResponse["user"]>(null);
+  const [bgImage] = useState(() => {
+    return backgrounds[Math.floor(Math.random() * backgrounds.length)];
+  });
 
   useEffect(() => {
     fetch("/api/me", { cache: "no-store" })
@@ -23,7 +48,17 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-zinc-900 via-black to-zinc-900 text-white">
+    <main className="min-h-screen flex items-center justify-center text-white">
+      <div
+        suppressHydrationWarning
+        className="fixed inset-0 -z-20 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('${bgImage}')`
+        }}
+      />
+
+      <div className="fixed inset-0 -z-10 bg-black/50 backdrop-blur-xxs" />
+      
       <div className="w-full max-w-xl px-6 text-center">
         <h1 className="text-4xl font-bold tracking-tight">
           {me ? `Welcome, ${me.username}` : "Welcome"}
