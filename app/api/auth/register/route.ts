@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { query } from "@/lib/db";
+import { authQuery } from "@/queries/auth";
 import { signAuthToken, setAuthCookie } from "@/lib/auth";
 
 type RegisterBody = {
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const existing = await query<{ id: string }>(
+    const existing = await authQuery<{ id: string }>(
       `SELECT id FROM public.users WHERE email = $1 OR username = $2 LIMIT 1`,
       [email, username]
     );
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const rows = await query<UserRow>(
+    const rows = await authQuery<UserRow>(
       `INSERT INTO public.users (email, username, password_hash)
        VALUES ($1, $2, $3)
        RETURNING id, email, username`,

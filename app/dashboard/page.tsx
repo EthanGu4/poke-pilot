@@ -76,7 +76,13 @@ export default function DashboardPage() {
           </button>
 
           <button
-            onClick={() => router.push("/teams")}
+            onClick={() => {
+              if (me) {
+                router.push("/teams");
+              } else {
+                router.push("/teams/all");
+              }
+            }}
             className="rounded-2xl border border-zinc-800 bg-white/5 p-6 text-left hover:bg-white/10 transition"
           >
             <div className="text-lg font-semibold">Teams</div>

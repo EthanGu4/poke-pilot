@@ -39,3 +39,16 @@ export type PokemonCatalogItem = {
     name: string,
     sprite: string;
 }
+
+export type TeamCardProps = {
+  team: {
+    id: string;
+    name: string;
+    pokemon: Array<{
+      slot: number;
+      name: string;
+      sprite: string | null;
+    }>;
+  };
+  showModify?: boolean;
+};

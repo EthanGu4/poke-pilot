@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { query } from "@/lib/db";
+import { authQuery } from "@/queries/auth";
 import { signAuthToken, setAuthCookie } from "@/lib/auth";
 
 type LoginBody = {
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const rows = await query<LoginRow>(
+    const rows = await authQuery<LoginRow>(
       `SELECT id, email, username, password_hash
        FROM public.users
        WHERE email = $1 OR LOWER(username) = $1

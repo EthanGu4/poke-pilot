@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import type { PokemonCatalogItem } from "@/types/schema";
 
@@ -25,7 +24,7 @@ export default function PokemonCatalogCard({ p }: { p: PokemonCatalogItem }) {
           <div className="relative flex h-[72px] w-[72px] items-center justify-center">
             <div className="absolute inset-0 rounded-2xl border-[2px] border-black/25 bg-white/35 shadow-[0_2px_0_rgba(255,255,255,0.7)_inset]" />
             {p.sprite ? (
-              <img
+              <Image
                 src={p.sprite}
                 alt={p.name}
                 width={72}

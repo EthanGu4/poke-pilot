@@ -3,26 +3,7 @@ import Link from "next/link";
 import SpriteCard from "@/components/SpriteCard/SpriteCard";
 import AbilityCard from "@/components/AbilityCard/AbilityCard";
 import MoveCard from "@/components/MoveCard/MoveCard";
-
-async function getPokemon(id: string): Promise<PokemonResponse> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
-
-  const res = await fetch(`${baseUrl}/api/pokemon/${encodeURIComponent(id)}`, {
-    cache: "no-store",
-  });
-
-  if (res.status === 404) {
-    throw new Error("NOT_FOUND");
-  }
-
-  if (!res.ok) {
-    throw new Error("FAILED");
-  }
-
-  return res.json();
-}
-
+import { getPokemon } from "@/lib/pokemon";
 
 export default async function PokemonDetailPage({
   params,

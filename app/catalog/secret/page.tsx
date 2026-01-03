@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import GlitchedPokemonCatalogCard from "@/components/GlitchedPokemonCatalogCard/GlitchedPokemonCatalogCard";
 import { PokemonCatalogItem } from "@/types/schema";
 
@@ -132,7 +131,7 @@ export default function GlitchDexPage() {
         .map(() => glyphs[Math.floor(Math.random() * glyphs.length)])
         .join("\n");
     return Array.from({ length: 48 }).map(make);
-  }, [seed]);
+  }, []);
 
   // decide which cards are corrupted (only when not searching)
   const isCorrupted = (idx: number) => {

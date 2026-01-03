@@ -1,19 +1,10 @@
-import { redirect } from "next/navigation";
-import { getAuth } from "@/lib/auth";
-import Link from "next/link";
-import { getTeamsFromUserId, getSpecificTeamFromId } from "@/queries/teams";
+import { getAllTeams, getSpecificTeamFromId } from "@/queries/teams";
 import { getPokemon } from "@/lib/pokemon";
 import TeamCard from "@/components/TeamCard/TeamCard";
 
 export default async function TeamsPage() {
-  const user = await getAuth();
+  const teams = await getAllTeams();
 
-  if (!user) {
-    redirect("/teams/all");
-  }
-
-  const teams = await getTeamsFromUserId(user.userId);
-  
   const teamsWithPokemon = await Promise.all(
     teams.map(async (team: { id: string; name: string }) => {
       const teamRows = await getSpecificTeamFromId(team.id);
@@ -39,37 +30,9 @@ export default async function TeamsPage() {
     })
   );
 
-
-
   return (
     <main style={{ padding: 24, fontFamily: "system-ui" }}>
-      <h1>Your Teams</h1>
-
-      <p>
-        You are logged in as <strong>{user.username}</strong>
-      </p>
-
-      <p>
-        User ID: <code>{user.userId}</code>
-      </p>
-
-      <p style={{ marginTop: 16, opacity: 0.7 }}>
-        If you can see this page and the user ID, auth is working correctly 🎉
-      </p>
-
-      <div className="flex flex-col gap-4">
-        <Link href="/teams/all" className="underline">
-          all teams
-        </Link>
-
-        <Link href="/dashboard" className="underline">
-          back to dash
-        </Link>
-
-        <Link href="/teams/new" className="underline">
-          new team
-        </Link>
-      </div>
+      <h1>All Teams</h1>
 
       <div
         style={{
@@ -81,8 +44,9 @@ export default async function TeamsPage() {
         }}
       >
         {teamsWithPokemon
+          .filter(team => team.pokemon.length === 6)
           .map((team) => (
-            <TeamCard key={team.id} team={team} showModify />
+            <TeamCard key={team.id} team={team} />
         ))}
       </div>
     </main>

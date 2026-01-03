@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pokémon Team Builder",
+  title: "PokéPilot",
   description: "build your own custom pokemon team!",
 };
 
