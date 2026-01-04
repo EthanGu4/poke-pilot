@@ -3,13 +3,17 @@ import Link from "next/link";
 import SpriteCard from "@/components/SpriteCard/SpriteCard";
 import AbilityCard from "@/components/AbilityCard/AbilityCard";
 import MoveCard from "@/components/MoveCard/MoveCard";
+import AddToTeamDropdown from "@/components/AddToTeamDropdown/AddToTeamDropdown";
 import { getPokemon } from "@/lib/pokemon";
+import { getAuth } from "@/lib/auth";
 
 export default async function PokemonDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+
+  const user = await getAuth();
 
   const { id } = await params;
   let p: PokemonResponse;
@@ -73,8 +77,14 @@ export default async function PokemonDetailPage({
             <span aria-hidden>←</span> Back
           </Link>
 
-          <div className="rounded-lg border-2 border-[#2B2B2B] bg-white px-3 py-2 text-xs font-semibold shadow-[3px_3px_0_#2B2B2B]">
-            Pokédex Entry
+          <div className="flex items-center gap-2">
+            {user && (
+              <AddToTeamDropdown pokemonId={p.id} />
+            )}
+
+            <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#2B2B2B] bg-white px-3 py-2 text-sm font-semibold shadow-[3px_3px_0_#2B2B2B]">
+              Pokédex Entry
+            </div>
           </div>
         </div>
 

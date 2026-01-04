@@ -52,3 +52,23 @@ export type TeamCardProps = {
   };
   showModify?: boolean;
 };
+
+export type TeamEditorProps = {
+  team: { 
+    id: string; 
+    name: string; 
+    is_public: boolean 
+  };
+  pokemon: Array<{ 
+    slot: number; 
+    pokemon_id: number; 
+    name: string; 
+    sprite: string | null 
+  }>;
+};
+
+export type EligibleTeam = {
+  id: string;
+  name: string;
+  team_size: number; 
+};

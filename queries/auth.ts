@@ -7,7 +7,3 @@ export async function authQuery<T>(
   const result = await pool.query(text, params);
   return result.rows as T[];
 }
-
-// export async function getUserFromId() {
-
-// }

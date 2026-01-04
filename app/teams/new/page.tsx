@@ -7,6 +7,5 @@ export default async function NewTeamPage() {
   if (!user) redirect("/teams/all");
 
   const newTeam = await createNewUntitledTeam(user.userId);
-
   redirect(`/teams/${newTeam[0].id}`);
 }

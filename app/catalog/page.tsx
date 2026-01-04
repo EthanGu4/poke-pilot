@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import PokemonCatalogCard from "@/components/PokemonCatalogCard/PokemonCatalogCard";
 import { PokemonCatalogItem } from "@/types/schema";
+import Link from "next/link";
 
 export default function CatalogPage() {
   const [allPokemon, setAllPokemon] = useState<PokemonCatalogItem[]>([]);
@@ -78,6 +79,24 @@ export default function CatalogPage() {
               </div>
             </div>
 
+            <Link
+              href="/dashboard"
+              className="
+                ml-auto
+                inline-flex items-center gap-2
+                rounded-full border-[2px] border-black/30
+                bg-white/15 px-4 py-2
+                text-sm font-extrabold text-white drop-shadow
+                shadow-[0_6px_0_rgba(0,0,0,0.25)]
+                transition-all
+                hover:-translate-y-0.5 hover:bg-white/25
+                active:translate-y-0 active:shadow-[0_3px_0_rgba(0,0,0,0.25)]
+                sm:text-base
+              "
+            >
+              ← Dashboard
+            </Link>
+            
             <div className="flex items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-rose-200/90 shadow-[0_0_0_2px_rgba(0,0,0,0.15)]" />
               <span className="h-3 w-3 rounded-full bg-amber-200/90 shadow-[0_0_0_2px_rgba(0,0,0,0.15)]" />
