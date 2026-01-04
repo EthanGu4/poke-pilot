@@ -4,12 +4,13 @@ import { deletePokemonFromTeam } from "@/queries/teams";
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: Promise<{ teamId: string, slotNumber: number }> }
+  context: { params: Promise<{ teamId: string, slotNumber: string }> }
 ) {
     const user = getAuth();
     if (!user) return new NextResponse("Unauthorized", { status: 401 });
 
-    const { teamId, slotNumber } = await params;
+    const { teamId, slotNumber: slotNumberStr } = await context.params;
+    const slotNumber = parseInt(slotNumberStr, 10);
 
     const slots = await deletePokemonFromTeam(teamId, slotNumber);
     
