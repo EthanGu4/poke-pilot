@@ -26,7 +26,7 @@ User login (credential verification)
 
 PostgreSQL schema for users, teams, and team Pokémon
 
-No sessions or persistent auth yet — login is currently stateless by design.
+JWT auth
 
 ## Setup
 1. Install dependencies
@@ -53,3 +53,8 @@ npm run dev
 Visit:
 
 http://localhost:3000/
+
+## Next Steps
+
+link to supabase for public access
+need to create supabase client and change queries to use supabase rather than pool
