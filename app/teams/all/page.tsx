@@ -1,8 +1,8 @@
-import { getAllTeams, getPokemonTeamFromTeamId } from "@/queries/teams";
+import { getAuth } from "@/lib/auth";
 import { getPokemon } from "@/lib/pokemon";
+import { getAllTeams, getPokemonTeamFromTeamId } from "@/queries/teams";
 import TeamCard from "@/components/TeamCard/TeamCard";
 import Link from "next/link";
-import { getAuth } from "@/lib/auth";
 
 export default async function TeamsPage() {
   const user = await getAuth();

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import type { PokemonCatalogItem } from "@/types/schema";
 
@@ -59,7 +60,7 @@ export default function GlitchedPokemonCatalogCard({
             <div className="absolute inset-0 rounded-2xl border border-emerald-200/20 bg-black/45 shadow-[0_0_0_1px_rgba(16,185,129,0.10),0_2px_0_rgba(255,255,255,0.08)_inset]" />
 
             {p.sprite ? (
-              <img
+              <Image
                 src={p.sprite}
                 alt={p.name}
                 width={72}

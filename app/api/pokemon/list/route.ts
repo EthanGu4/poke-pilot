@@ -1,4 +1,3 @@
-// app/api/pokemon/list/route.ts
 import { NextResponse } from "next/server";
 import type { PokemonCatalogItem } from "@/types/schema";
 

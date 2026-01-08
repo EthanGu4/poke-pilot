@@ -1,11 +1,11 @@
-import type { PokemonResponse } from "@/types/schema";
 import Link from "next/link";
-import SpriteCard from "@/components/SpriteCard/SpriteCard";
-import AbilityCard from "@/components/AbilityCard/AbilityCard";
-import MoveCard from "@/components/MoveCard/MoveCard";
-import AddToTeamDropdown from "@/components/AddToTeamDropdown/AddToTeamDropdown";
-import { getPokemon } from "@/lib/pokemon";
 import { getAuth } from "@/lib/auth";
+import { getPokemon } from "@/lib/pokemon";
+import AbilityCard from "@/components/AbilityCard/AbilityCard";
+import AddToTeamDropdown from "@/components/AddToTeamDropdown/AddToTeamDropdown";
+import MoveCard from "@/components/MoveCard/MoveCard";
+import SpriteCard from "@/components/SpriteCard/SpriteCard";
+import type { PokemonResponse } from "@/types/schema";
 
 export default async function PokemonDetailPage({
   params,

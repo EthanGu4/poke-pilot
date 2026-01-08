@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import PokemonCatalogCard from "@/components/PokemonCatalogCard/PokemonCatalogCard";
 import { PokemonCatalogItem } from "@/types/schema";
-import Link from "next/link";
 
 export default function CatalogPage() {
   const [allPokemon, setAllPokemon] = useState<PokemonCatalogItem[]>([]);

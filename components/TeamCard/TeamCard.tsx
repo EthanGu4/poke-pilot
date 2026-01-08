@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { TeamCardProps } from "@/types/schema";
 

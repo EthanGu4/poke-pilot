@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
 import { authQuery } from "@/queries/auth";
 import { signAuthToken, setAuthCookie } from "@/lib/auth";
 

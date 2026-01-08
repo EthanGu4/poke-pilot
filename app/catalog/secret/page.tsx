@@ -28,11 +28,9 @@ export default function GlitchDexPage() {
 
   const LIMIT = 1025;
 
-  // chaos visuals
   const [cols, setCols] = useState<RainCol[]>([]);
   const [seed, setSeed] = useState(0);
 
-  // boot + takeover overlays
   const [booting, setBooting] = useState(true);
   const [takeover, setTakeover] = useState(false);
   const takeoverTimeout = useRef<number | null>(null);
@@ -63,13 +61,11 @@ export default function GlitchDexPage() {
     };
   }, []);
 
-  // boot splash
   useEffect(() => {
     const t = window.setTimeout(() => setBooting(false), 950);
     return () => window.clearTimeout(t);
   }, []);
 
-  // code rain + reseed loop
   useEffect(() => {
     const makeCols = () => {
       const count = 34;
@@ -123,7 +119,6 @@ export default function GlitchDexPage() {
     return Array.from(map.values());
   }, [allPokemon, query]);
 
-  // prebuild “code” lines for rain
   const columnText = useMemo(() => {
     const glyphs = "01ABCDEF!?@#$%&*+-=<>[]{}\\/|~^";
     const make = () =>
@@ -133,25 +128,21 @@ export default function GlitchDexPage() {
     return Array.from({ length: 48 }).map(make);
   }, []);
 
-  // decide which cards are corrupted (only when not searching)
   const isCorrupted = (idx: number) => {
     if (query.trim()) return false;
     const r = (idx * 31 + seed * 17) % 100;
     return r < 45; // ~45%
   };
 
-  // optional: occasionally make a card jitter
   const isGlitchy = (idx: number) => idx % 9 === 0;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#070A0F] text-[#E7FFEE]">
-      {/* BACKGROUND CHAOS */}
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(34,197,94,0.18),transparent_55%),radial-gradient(circle_at_80%_25%,rgba(16,185,129,0.12),transparent_52%),radial-gradient(circle_at_45%_85%,rgba(168,85,247,0.12),transparent_55%)]" />
       <div className="pointer-events-none fixed inset-0 opacity-[0.14] mix-blend-overlay [background:linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:100%_4px]" />
       <div className="pointer-events-none fixed inset-0 opacity-[0.10] mix-blend-overlay [background-image:radial-gradient(rgba(255,255,255,0.30)_1px,transparent_1px)] [background-size:18px_18px]" />
       <div className="pointer-events-none fixed inset-0 glitch-warp" />
 
-      {/* CODE RAIN */}
       <div className="pointer-events-none fixed inset-0 z-10">
         {cols.map((c, i) => (
           <pre
@@ -172,7 +163,6 @@ export default function GlitchDexPage() {
         ))}
       </div>
 
-      {/* GLITCH SHARDS */}
       <div className="pointer-events-none fixed inset-0 z-10 opacity-70">
         {Array.from({ length: 12 }).map((_, i) => (
           <div
@@ -191,7 +181,6 @@ export default function GlitchDexPage() {
         ))}
       </div>
 
-      {/* SYSTEM TAKEOVER OVERLAY */}
       <div
         className={[
           "pointer-events-none fixed inset-0 z-40 opacity-0 transition-opacity",
@@ -218,7 +207,6 @@ export default function GlitchDexPage() {
         </div>
       </div>
 
-      {/* BIOS BOOT OVERLAY */}
       {booting && (
         <div className="fixed inset-0 z-50 bg-black">
           <div className="mx-auto flex h-full max-w-4xl flex-col justify-center px-6">
@@ -251,10 +239,8 @@ export default function GlitchDexPage() {
         </div>
       )}
 
-      {/* UI CONTENT */}
       <div className="relative z-20 mx-auto max-w-6xl px-4 py-8">
         <div className="overflow-hidden rounded-3xl border border-emerald-200/20 bg-black/55 shadow-[0_0_0_1px_rgba(16,185,129,0.10),0_30px_120px_rgba(0,0,0,0.8)] backdrop-blur">
-          {/* HEADER */}
           <div className="relative border-b border-emerald-200/15 bg-gradient-to-r from-emerald-500/20 via-emerald-400/10 to-fuchsia-500/10 px-5 py-4">
             <div className="absolute inset-0 opacity-35 [background:linear-gradient(90deg,transparent,rgba(16,185,129,0.12),transparent)] animate-pulse" />
             <div className="relative flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -292,7 +278,6 @@ export default function GlitchDexPage() {
             </div>
           </div>
 
-          {/* SEARCH */}
           <div className="border-b border-emerald-200/10 bg-black/55 px-4 py-4">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <span className="text-xs font-black tracking-wide text-emerald-100/70">
@@ -332,7 +317,6 @@ export default function GlitchDexPage() {
             </div>
           </div>
 
-          {/* GRID */}
           <div className="px-4 py-4">
             {loading && (
               <div className="rounded-2xl border border-emerald-200/15 bg-emerald-500/10 px-4 py-3 text-sm font-black text-emerald-50/90">
@@ -382,7 +366,6 @@ export default function GlitchDexPage() {
         </div>
       </div>
 
-      {/* PAGE-LOCAL CSS */}
       <style
         dangerouslySetInnerHTML={{
           __html: `

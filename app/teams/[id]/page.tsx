@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getAuth } from "@/lib/auth";
-import { getPokemonTeamFromTeamId, getTeamFromTeamId } from "@/queries/teams";
 import { getPokemon } from "@/lib/pokemon";
+import { getPokemonTeamFromTeamId, getTeamFromTeamId } from "@/queries/teams";
 import TeamEditor from "@/components/TeamEditor/TeamEditor";
 
 export default async function TeamEditPage({

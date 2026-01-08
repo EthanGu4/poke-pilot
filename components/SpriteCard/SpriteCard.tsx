@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function SpriteCard({ label, src }: { label: string; src: string | null }) {
   return (
     <div
@@ -12,7 +14,7 @@ export default function SpriteCard({ label, src }: { label: string; src: string 
       </div>
 
       {src ? (
-        <img
+        <Image
           src={src}
           alt={label}
           width={120}

@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAuth } from "@/lib/auth";
-import Link from "next/link";
-import { getTeamsFromUserId, getPokemonTeamFromTeamId } from "@/queries/teams";
 import { getPokemon } from "@/lib/pokemon";
+import { getTeamsFromUserId, getPokemonTeamFromTeamId } from "@/queries/teams";
 import TeamCard from "@/components/TeamCard/TeamCard";
 
 export default async function TeamsPage() {

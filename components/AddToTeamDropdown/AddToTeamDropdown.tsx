@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { EligibleTeam } from "@/types/schema";
 import { useRouter } from 'next/navigation';
+import type { EligibleTeam } from "@/types/schema";
 
 type Mode = "teams" | "slots";
 
